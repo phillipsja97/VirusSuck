@@ -83,11 +83,55 @@ namespace VirusSuck
             // Queues below
             //------------------------------------------------------------------
 
+            // instantiating the queue
+            var diseasesToCure = new Queue<string>();
+            // adding a queue
+            diseasesToCure.Enqueue("SARS");
+            diseasesToCure.Enqueue("COVID-19");
+            // deleting a queue // first in, first out type collection. Whatever went in first, gets deleted first. Have to move through the collection. 
+            var thingToCure = diseasesToCure.Dequeue(); // the value deleted will go into a variable. and so on.
+            var nextThingToCure = diseasesToCure.Dequeue();
 
+            //------------------------------------------------------------------
+            // Hashsets below
+            //------------------------------------------------------------------
 
-            Console.ReadLine();
-            
+            // vectors will store 1 instance of an addition, even if it is added more than once.
 
+            var vectors = new HashSet<string>();
+
+            vectors.Add("Airborne");
+            vectors.Add("Airborne");
+            vectors.Add("Droplet");
+            vectors.Add("Droplet");
+            vectors.Add("Bloodborne");
+            vectors.Add("Bloodborne");
+
+            // End examples.
+
+            var covid19 = new Virus("COVID-19", 15);
+            covid19.Symptoms.Add("Fever");
+            covid19.Symptoms.Add("Dry Cough");
+            covid19.Symptoms.Add("Cancels everything except work.");
+            covid19.NumberOfDeathsWorldWide = 7150;
+
+            var spanishFlu = new Virus("Spanish Flu", 11);
+            spanishFlu.Symptoms.Add("Fever");
+            spanishFlu.Symptoms.Add("Dry Cough");
+            spanishFlu.NumberOfDeathsWorldWide = 50000000;
+
+            var rabies = new Virus("Rabies", 2);
+            rabies.Symptoms.Add("Fever");
+            rabies.Symptoms.Add("Excess salivation");
+            rabies.NumberOfDeathsWorldWide = 200000;
+
+            var viruses = new List<Virus> { covid19, spanishFlu, rabies };
+
+            foreach ( var virus in viruses)
+            {
+                Console.WriteLine($"The {virus.Name} has an icubation period of {virus.IncubationDays} days and has killed {virus.NumberOfDeathsWorldWide} people.");
+                Console.WriteLine($"It has the following symptoms : {string.Join(",", virus.Symptoms)}");
+            }
 
         }
     }
